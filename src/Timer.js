@@ -6,7 +6,19 @@ class Timer extends Component {
     color: "#" + Math.floor(Math.random() * 16777215).toString(16)
   };
 
-  // add your code here
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.setState((prevState) => ({
+        time: prevState.time + 1,
+      }));
+    }, 1000);
+  }
+
+  // 5. componentWillUnmount is called after the component is removed (by the parent component)
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
 
   render() {
     const { time, color } = this.state;
